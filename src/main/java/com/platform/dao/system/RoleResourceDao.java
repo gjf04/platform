@@ -24,4 +24,8 @@ public class RoleResourceDao   extends AbstractDao {
     public Integer deleteByRoleId(Long roleId){
     	return this.getSqlSession().delete(getNamespacePrefix() + "deleteByRoleId", roleId);
     }
+
+    public List<RoleResource> getByRoleIdAndResourceId(RoleResource roleResource){
+        return this.getSqlSession().selectList(getNamespacePrefix() + "getByRoleIdAndResourceId", roleResource);
+    }
 }

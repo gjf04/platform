@@ -17,4 +17,6 @@ public interface RoleResourceService {
 	public ServiceResult<Integer> insert(RoleResource roleResource);
 	
 	public ServiceResult<Integer> deleteByRoleId(Long roleId);
+
+	public ServiceResult<List<RoleResource>> getByRoleIdAndResourceId(RoleResource roleResource);
 }

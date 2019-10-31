@@ -26,4 +26,9 @@ public interface ResourceInfoService {
      * 根据userId获取按钮code
      * */
     public Map<String, String> getButtonCodeByUserId(Long userId);
+
+    /**
+     * 根据userId获取模块code
+     * */
+    public Map<String, String> getModuleCodeByUserId(Long userId);
 }

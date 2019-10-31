@@ -26,4 +26,8 @@ public class ResourceInfoDao extends AbstractDao {
     public List<String> getButtonCodeByUserId(Long userId){
         return this.getSqlSession().selectList(getNamespacePrefix() + "getButtonCodeByUserId", userId);
     }
+
+    public List<String> getModuleCodeByUserId(Long userId){
+        return this.getSqlSession().selectList(getNamespacePrefix() + "getModuleCodeByUserId", userId);
+    }
 }

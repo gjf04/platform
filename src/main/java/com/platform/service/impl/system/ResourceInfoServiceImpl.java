@@ -42,4 +42,14 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
         }
         return map;
     }
+
+    @Override
+    public Map<String, String> getModuleCodeByUserId(Long userId){
+        List<String> list = resourceInfoDao.getModuleCodeByUserId(userId);
+        Map<String, String> map = new HashMap<String, String>();
+        for(String s : list){
+            map.put(s, s);
+        }
+        return map;
+    }
 }

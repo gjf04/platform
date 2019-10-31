@@ -81,16 +81,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="MenuItem" onclick="location.href='/system/user.html'">
-                                    <div class="MenuItem1" style="background-color:#2e8d95">
-                                        <div class="MenuContent">
-                                            <div class="MenuPic" style="background-image:url(${urls.getForLookupPath('/images/elec.png')})"></div>
-                                        </div>
-                                        <div class="MenuTitle">
-                                            用户管理
+
+                                <#if showUserModule?? && showUserModule == "YES">
+                                    <div class="MenuItem" onclick="location.href='/system/user.html'">
+                                        <div class="MenuItem1" style="background-color:#2e8d95">
+                                            <div class="MenuContent">
+                                                <div class="MenuPic" style="background-image:url(${urls.getForLookupPath('/images/elec.png')})"></div>
+                                            </div>
+                                            <div class="MenuTitle">
+                                                用户管理
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </#if>
+                                <#if showDepartmentModule?? && showDepartmentModule == "YES">
                                 <div class="MenuItem" onclick="location.href='/system/department.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
@@ -101,6 +105,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                </#if>
+                                <#if showRoleModule?? && showRoleModule == "YES">
                                 <div class="MenuItem" onclick="location.href='/system/role.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
@@ -111,6 +117,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                </#if>
+                                <#if showRoleResourceModule?? && showRoleResourceModule == "YES">
                                 <div class="MenuItem" onclick="location.href='/system/roleResource.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
@@ -121,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                </#if>
 
 
 

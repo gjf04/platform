@@ -1,5 +1,6 @@
 package com.platform.controller.system;
 
+import com.platform.entity.system.ResourceInfo;
 import com.platform.entity.system.RoleResource;
 import com.platform.service.system.ResourceInfoService;
 import com.platform.service.system.RoleResourceService;
@@ -17,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -90,16 +89,38 @@ public class RoleResourceController {
         }
         Long rid = Long.parseLong(roleId);
         roleResourceService.deleteByRoleId(rid);
+//        List<ResourceInfo> allResources = resourceInfoService.getAll();
+//        Map<Long, ResourceInfo> resourceMap = new HashMap<Long, ResourceInfo>();
+//        for(ResourceInfo resourceInfo : allResources){
+//            resourceMap.put(resourceInfo.getId(), resourceInfo);
+//        }
+//        Map<Long,Long> moduleIds = new HashMap<Long,Long>();
         for(String resourceId : resourceIds){
             if(resourceId == null || "".equals(resourceId)){
                 continue;
             }
+            Long resId = Long.parseLong(resourceId);
             RoleResource roleResource = new RoleResource();
             roleResource.setRoleId(rid);
-            roleResource.setResourceId(Long.parseLong(resourceId));
+            roleResource.setResourceId(resId);
             roleResourceService.insert(roleResource);
+//            if(resourceMap.containsKey(resId)){
+//                ResourceInfo ri = resourceMap.get(resId);
+//                if(ResourceInfo.TypeEnum.BUTTON.getType().equals(ri.getType())){
+//                    moduleIds.put(ri.getParentId(), ri.getParentId());
+//                }
+//            }
         }
-
+//        Set<Long> keys = moduleIds.keySet();
+//        for(Long l : keys){
+//            RoleResource roleResourceModule = new RoleResource();
+//            roleResourceModule.setRoleId(rid);
+//            roleResourceModule.setResourceId(l);
+//            ServiceResult<List<RoleResource>> result = roleResourceService.getByRoleIdAndResourceId(roleResourceModule);
+//            if(result.getSuccess() && (result.getResult() == null || result.getResult().size() == 0)){
+//                roleResourceService.insert(roleResourceModule);
+//            }
+//        }
         return jsonResult;
     }
 

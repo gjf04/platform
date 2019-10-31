@@ -57,4 +57,17 @@ public class RoleResourceServiceImpl implements RoleResourceService {
         }
         return result;
 	}
+
+	@Override
+	public ServiceResult<List<RoleResource>> getByRoleIdAndResourceId(RoleResource roleResource) {
+		ServiceResult<List<RoleResource>> result = new ServiceResult<List<RoleResource>>();
+		try{
+			List<RoleResource> list = roleResourceDao.getByRoleIdAndResourceId(roleResource);
+			result.setResult(list);
+		}catch(Exception e){
+			result.setError("error","信息查询失败");
+			log.error("信息查询失败:" + Throwables.getStackTraceAsString(e) );
+		}
+		return result;
+	}
 }
