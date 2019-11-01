@@ -2,7 +2,9 @@ package com.platform.controller.system;
 
 import com.platform.entity.system.Role;
 import com.platform.entity.util.TreeNode;
+import com.platform.service.system.ResourceInfoService;
 import com.platform.service.system.RoleService;
+import com.platform.util.ButtonConstant;
 import com.platform.util.HttpJsonResult;
 import com.platform.util.SessionSecurityConstants;
 import com.platform.util.WebUtil;
@@ -39,13 +41,35 @@ import java.util.Map;
 @RequestMapping("/system")
 @Slf4j
 public class RoleController {
-    private final static org.apache.log4j.Logger logger = LogManager.getLogger(RoleController.class);
-
+    @Resource
+    private ResourceInfoService resourceInfoService;
     @Resource
     private RoleService roleService;
 
     @RequestMapping(value = "role.html", method = { RequestMethod.GET, RequestMethod.POST })
-    public String index(HttpServletRequest request, Model model) throws Exception {
+    public String index(HttpServletRequest request, Map<String, Object> dataMap) throws Exception {
+        Long userId = (Long)(request.getSession().getAttribute(SessionSecurityConstants.KEY_USER_ID));
+        if (null == userId) {
+            log.error("[DepartmentController][index] userId不存在,userId={}", userId);
+            return "redirect:/login.html";
+        }
+        Map<String, String> buttonsMap = resourceInfoService.getButtonCodeByUserId(userId);
+        String showAddButton = "NO";
+        String showEditButton = "NO";
+        String showRemoveButton = "NO";
+        if(buttonsMap.containsKey(ButtonConstant.ROLE_ADD_CODE)){
+            showAddButton = "YES";
+        }
+        if(buttonsMap.containsKey(ButtonConstant.ROLE_EDIT_CODE)){
+            showEditButton = "YES";
+        }
+        if(buttonsMap.containsKey(ButtonConstant.ROLE_REMOVE_CODE)){
+            showRemoveButton = "YES";
+        }
+
+        dataMap.put("showAddButton", showAddButton);
+        dataMap.put("showEditButton", showEditButton);
+        dataMap.put("showRemoveButton", showRemoveButton);
         return "system/role_list";
     }
 
@@ -74,7 +98,7 @@ public class RoleController {
                 }
             }
         } catch (IOException e) {
-            logger.error("角色列表查询失败", e);
+            log.error("角色列表查询失败,error={}", e.getMessage());
             throw new BusinessException("角色列表查询失败" + e.getMessage());
         }
     }
@@ -89,7 +113,7 @@ public class RoleController {
 
         ServiceResult<Role> seResult = roleService.getByName(name.trim());
         if(seResult.getSuccess() && seResult != null && seResult.getResult() != null) {
-            logger.error("该角色名称已存在");
+            log.error("该角色名称已存在");
             throw new BusinessException("该角色名称已存在");
         }
         Role role = new Role();
@@ -106,7 +130,7 @@ public class RoleController {
             }
         } catch (Exception e) {
             result.setMessage("保存失败，请稍后重试！");
-            logger.error("保存失败，请稍后重试！" + Throwables.getStackTraceAsString(e));
+            log.error("保存失败，请稍后重试！error={}" + Throwables.getStackTraceAsString(e));
         }
         return result;
     }

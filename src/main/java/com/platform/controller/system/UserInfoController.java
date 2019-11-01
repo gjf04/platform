@@ -50,7 +50,6 @@ import java.util.*;
 @RequestMapping("/system")
 @Slf4j
 public class UserInfoController {
-    private final static org.apache.log4j.Logger logger = LogManager.getLogger(UserInfoController.class);
 
     @Resource
     private ResourceInfoService resourceInfoService;
@@ -342,7 +341,7 @@ public class UserInfoController {
         String[] sheetHead = new String[] { "用户名", "真实姓名",  "性别", "手机号", "部门", "职务", "使用状态" };
 
         try {
-            ExcelExportUtil.exportEntity(logger, request, response, fileName, sheetName, sheetHead,
+            ExcelExportUtil.exportEntity(request, response, fileName, sheetName, sheetHead,
                     new ExcelCallbackInterfaceUtil() {
 
                         @Override

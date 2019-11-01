@@ -29,9 +29,15 @@
         <table id="dataGrid"></table>
     </div>
     <div id="tb" >
-        <a id="add" href="#" class="easyui-linkbutton" iconCls="icon-add"  plain="false" >新增</a>
-        <a id="update" href="#" class="easyui-linkbutton" iconCls="icon-edit"  plain="false"  >修改</a>
-        <a id="delete" href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false">删除</a>
+        <#if showAddButton?? && showAddButton == "YES">
+            <a id="add" href="#" class="easyui-linkbutton" iconCls="icon-add"  plain="false" >新增</a>
+        </#if>
+        <#if showEditButton?? && showEditButton == "YES">
+            <a id="update" href="#" class="easyui-linkbutton" iconCls="icon-edit"  plain="false"  >修改</a>
+        </#if>
+        <#if showRemoveButton?? && showRemoveButton == "YES">
+            <a id="delete" href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false">删除</a>
+        </#if>
     </div>
 </div>
 

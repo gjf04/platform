@@ -39,10 +39,13 @@ public class IndexController extends AbstractController{
 			return "redirect:/login.html";
 		}
 		Map<String, String> buttonsMap = resourceInfoService.getButtonCodeByUserId(userId);
+		Map<String, String> modulesMap = resourceInfoService.getModuleCodeByUserId(userId);
 		String showDepartmentModule = "NO";
 		String showUserModule = "NO";
 		String showRoleModule = "NO";
 		String showRoleResourceModule = "NO";
+		String showSetModule = "NO";
+		String showElecModule = "NO";
 		for(String s : buttonsMap.keySet()){
 			if(s.startsWith(ModuleConstant.DEPARTMENT_MANAGEMENT)){
 				showDepartmentModule = "YES";
@@ -56,14 +59,43 @@ public class IndexController extends AbstractController{
 			if(s.startsWith(ModuleConstant.ROLE_RESOURCE_MANAGEMENT)){
 				showRoleResourceModule = "YES";
 			}
+			if(s.startsWith(ModuleConstant.SET_MANAGEMENT)){
+				showSetModule = "YES";
+			}
+			if(s.startsWith(ModuleConstant.ELEC_MANAGEMENT)){
+				showElecModule = "YES";
+			}
+		}
+
+		for(String s : modulesMap.keySet()){
+			if(s.equals(ModuleConstant.DEPARTMENT_MANAGEMENT)){
+				showDepartmentModule = "YES";
+			}
+			if(s.equals(ModuleConstant.USER_MANAGEMENT)){
+				showUserModule = "YES";
+			}
+			if(s.equals(ModuleConstant.ROLE_MANAGEMENT)){
+				showRoleModule = "YES";
+			}
+			if(s.equals(ModuleConstant.ROLE_RESOURCE_MANAGEMENT)){
+				showRoleResourceModule = "YES";
+			}
+			if(s.equals(ModuleConstant.SET_MANAGEMENT)){
+				showSetModule = "YES";
+			}
+			if(s.equals(ModuleConstant.ELEC_MANAGEMENT)){
+				showElecModule = "YES";
+			}
 		}
 
 		modelMap.put("showDepartmentModule", showDepartmentModule);
 		modelMap.put("showUserModule", showUserModule);
 		modelMap.put("showRoleModule", showRoleModule);
 		modelMap.put("showRoleResourceModule", showRoleResourceModule);
+		modelMap.put("showSetModule", showSetModule);
+		modelMap.put("showElecModule", showElecModule);
 		String nickName = "";
-		ServiceResult<UserInfo> parentResult = userInfoService.getById(1L);
+		ServiceResult<UserInfo> parentResult = userInfoService.getById(userId);
 		if (!parentResult.getSuccess()) {
 			log.error("失败！");
 		}else{

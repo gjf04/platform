@@ -59,7 +59,7 @@
 
                             <div class="MenuRow">
 
-
+                                <#if showElecModule?? && showElecModule == "YES">
                                 <div class="MenuItem" onclick="location.href='firePre.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
@@ -70,7 +70,8 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                </#if>
+                                <#if showSetModule?? && showSetModule == "YES">
                                 <div class="MenuItem" onclick="location.href='wisdom_elec_set.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
@@ -81,7 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                </#if>
                                 <#if showUserModule?? && showUserModule == "YES">
                                     <div class="MenuItem" onclick="location.href='/system/user.html'">
                                         <div class="MenuItem1" style="background-color:#2e8d95">

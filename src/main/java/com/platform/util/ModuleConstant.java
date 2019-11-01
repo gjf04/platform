@@ -17,4 +17,10 @@ public class ModuleConstant {
     //用户管理
     public static final String USER_MANAGEMENT= "100101104";
 
+    //设备管理
+    public static final String SET_MANAGEMENT= "100101105";
+
+    //智慧用电管理
+    public static final String ELEC_MANAGEMENT= "100101106";
+
 }

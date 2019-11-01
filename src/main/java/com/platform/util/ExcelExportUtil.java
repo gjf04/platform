@@ -71,14 +71,8 @@ public class ExcelExportUtil {
 
     /**
      * 将entity导出Excel
-     * @author DHC 刘骥飞
-     * @param sheet 设置完毕的sheet对象
-     * @param temp 起始行号
-     * @param headers excel头部
-     *      （格式：用逗号分隔。
-     *      例： {"序号","渠道","产品组","库位码"}。）
      */
-    public static void exportEntity(Logger logger, HttpServletRequest request,
+    public static void exportEntity(HttpServletRequest request,
                                     HttpServletResponse response, String fileName,
                                     String sheetName, String[] totalHeaders,
                                     ExcelCallbackInterfaceUtil callback) throws Exception {

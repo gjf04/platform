@@ -4,8 +4,11 @@ import com.platform.entity.system.Department;
 import com.platform.entity.system.UserInfo;
 import com.platform.entity.util.ClosedDepartmentTreeNodeFactory;
 import com.platform.service.system.DepartmentService;
+import com.platform.service.system.ResourceInfoService;
 import com.platform.service.system.UserInfoService;
+import com.platform.util.ButtonConstant;
 import com.platform.util.HttpJsonResult;
+import com.platform.util.SessionSecurityConstants;
 import com.platform.util.WebUtil;
 import com.gao.common.BusinessException;
 import com.gao.common.PagerInfo;
@@ -37,12 +40,36 @@ import java.util.Map;
 @Slf4j
 public class DepartmentController {
     @Resource
+    private ResourceInfoService resourceInfoService;
+    @Resource
     private DepartmentService departmentService;
     @Resource
     private UserInfoService userInfoService;
 
     @RequestMapping(value = "department.html", method = { RequestMethod.GET, RequestMethod.POST })
-    public String index(HttpServletRequest request, Model model) throws Exception {
+    public String index(HttpServletRequest request,Map<String, Object> dataMap) throws Exception {
+        Long userId = (Long)(request.getSession().getAttribute(SessionSecurityConstants.KEY_USER_ID));
+        if (null == userId) {
+            log.error("[DepartmentController][index] userId不存在,userId={}", userId);
+            return "redirect:/login.html";
+        }
+        Map<String, String> buttonsMap = resourceInfoService.getButtonCodeByUserId(userId);
+        String showAddButton = "NO";
+        String showEditButton = "NO";
+        String showRemoveButton = "NO";
+        if(buttonsMap.containsKey(ButtonConstant.DEPARTMENT_ADD_CODE)){
+            showAddButton = "YES";
+        }
+        if(buttonsMap.containsKey(ButtonConstant.DEPARTMENT_EDIT_CODE)){
+            showEditButton = "YES";
+        }
+        if(buttonsMap.containsKey(ButtonConstant.DEPARTMENT_REMOVE_CODE)){
+            showRemoveButton = "YES";
+        }
+
+        dataMap.put("showAddButton", showAddButton);
+        dataMap.put("showEditButton", showEditButton);
+        dataMap.put("showRemoveButton", showRemoveButton);
         return "system/department_list";
     }
 
