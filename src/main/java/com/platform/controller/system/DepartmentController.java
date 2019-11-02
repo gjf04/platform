@@ -146,6 +146,7 @@ public class DepartmentController {
 
         String parentId = request.getParameter("parentId");
         String description = request.getParameter("description");
+        String address = request.getParameter("address");
         Department parent = new Department();
         parent.setId(Long.parseLong(parentId));
         Department department = new Department();
@@ -155,6 +156,7 @@ public class DepartmentController {
         department.setPrincipalNickName(principalUser.getNickName());
         department.setParent(parent);
         department.setDescription(description);
+        department.setAddress(address);
         department.setCreatedBy("system");
         department.setUpdatedBy("system");
         ServiceResult<Department> result = departmentService.createDepartment(department);

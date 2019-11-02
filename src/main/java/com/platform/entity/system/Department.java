@@ -29,6 +29,8 @@ public class Department extends BaseEntity {
 
     private String description;
 
+    private String address;
+
     private Department parent;
 
 }

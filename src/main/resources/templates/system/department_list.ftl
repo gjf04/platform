@@ -42,6 +42,7 @@
           <th field="name" width="300" align="center">部门名称</th>
           <th field="code" width="200" align="center">部门编码</th>
             <th field="description" width="300" align="center">部门描述</th>
+            <th field="address" width="300" align="center">地址</th>
         </tr>
         </thead>
       </table>
@@ -91,6 +92,12 @@
 						url: '/system/departmentTree',
 						animate: true,required:true"/>
             </td>
+        </tr>
+
+        <tr>
+            <td style="text-align: right;">地址<span class="star">*</span>:</td>
+            <td>
+                <input id="daddress" name="address" size="54" class="easyui-textbox" data-options="required:true,missingMessage:'该输入项为必输项'" style="width: 200px;"/></td>
         </tr>
 
         <tr>
@@ -244,6 +251,7 @@
     $('#principal_user_id').combotree("setValue","");
     $('#parent_department_id').combotree("setValue","");
     $('#ddescription').textbox("setValue","");
+      $('#daddress').textbox("setValue","");
     $("#manageDepartmentDiv").dialog("open");
   }
 
@@ -253,11 +261,12 @@
       var principalUserId = $('#principal_user_id').combotree("getValue");
       var parentId = $('#parent_department_id').combotree("getValue");
       var description = $('#ddescription').val();
+      var address = $('#daddress').val();
       $.ajax({
           type:'post',
           url:'/system/createDepartment',
           dataType : "json",
-          data:{name:name, code:code, principalUserId:principalUserId, parentId:parentId, description:description},
+          data:{name:name, code:code, principalUserId:principalUserId, parentId:parentId, description:description, address:address},
           cache:false,
           async:false,
           success:function(data){
