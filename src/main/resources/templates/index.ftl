@@ -72,7 +72,7 @@
                                 </div>
                                 </#if>
                                 <#if showSetModule?? && showSetModule == "YES">
-                                <div class="MenuItem" onclick="location.href='wisdom_elec_set.html'">
+                                <div class="MenuItem" onclick="location.href='/system/device.html'">
                                     <div class="MenuItem1" style="background-color:#2e8d95">
                                         <div class="MenuContent">
                                             <div class="MenuPic" style="background-image:url(${urls.getForLookupPath('/images/elec.png')})"></div>
