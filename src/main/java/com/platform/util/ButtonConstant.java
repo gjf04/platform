@@ -31,10 +31,6 @@ public class ButtonConstant {
     //用户管理-审核通过
     public static final String USER_ADUIT_CODE= "100101104104";
 
-    //客户接入-新增
-    public static final String CUSTOMER_ADD_CODE= "100102101104";
-    //客户接入-分配
-    public static final String CUSTOMER_DISTRIBUTION_CODE= "100102101102";
-    //客户接入-反馈
-    public static final String CUSTOMER_FEEDBACK_CODE= "100102101103";
+    //设备管理-新增
+    public static final String DEVICE_ADD_CODE= "100101105102";
 }

@@ -61,26 +61,14 @@ public class DeviceInfoController {
             return "redirect:/login.html";
         }
         Map<String, String> buttonsMap = resourceInfoService.getButtonCodeByUserId(userId);
-        String showResetPasswordButton = "NO";
+
         String showAddButton = "NO";
-        String showEditButton = "NO";
-        String showAuditButton = "NO";
-        if(buttonsMap.containsKey(ButtonConstant.USER_RESET_PASSWORD_CODE)){
-            showResetPasswordButton = "YES";
-        }
-        if(buttonsMap.containsKey(ButtonConstant.USER_ADD_CODE)){
+
+        if(buttonsMap.containsKey(ButtonConstant.DEVICE_ADD_CODE)){
             showAddButton = "YES";
         }
-        if(buttonsMap.containsKey(ButtonConstant.USER_EDIT_CODE)){
-            showEditButton = "YES";
-        }
-        if(buttonsMap.containsKey(ButtonConstant.USER_ADUIT_CODE)){
-            showAuditButton = "YES";
-        }
-        dataMap.put("showResetPasswordButton", showResetPasswordButton);
+
         dataMap.put("showAddButton", showAddButton);
-        dataMap.put("showEditButton", showEditButton);
-        dataMap.put("showAuditButton", showAuditButton);
         return "system/device_list";
     }
 
@@ -132,12 +120,16 @@ public class DeviceInfoController {
         String serialNo = request.getParameter("serialNo");
         String name = request.getParameter("name");
         String ip = request.getParameter("ip");
+        String simNo = request.getParameter("simNo");
+        String version = request.getParameter("version");
 
         DeviceInfo deviceInfo = new DeviceInfo();
         deviceInfo.setType(type);
         deviceInfo.setSerialNo(serialNo);
         deviceInfo.setName(name);
         deviceInfo.setIp(ip);
+        deviceInfo.setSimNo(simNo);
+        deviceInfo.setVersion(version);
         deviceInfo.setStatus(DeviceInfo.StatusEnum.ENABLE.getStatus());
         deviceInfo.setCreatedBy("system");
         deviceInfo.setUpdatedBy("system");

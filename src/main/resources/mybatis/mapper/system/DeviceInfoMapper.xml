@@ -18,12 +18,15 @@
     <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="sim_no" jdbcType="VARCHAR" property="simNo" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
   </resultMap>
   <sql id="Base_Column_List">
     type, serial_no, name, status, ip,
     department_id, department_name, parent_id, parent_nick_name,
     created_at, updated_at,
-    created_by, updated_by, remark, is_delete
+    created_by, updated_by, remark, is_delete,
+    sim_no, version
   </sql>
 
   <sql id="table">device_info</sql>
@@ -40,15 +43,12 @@
   </delete>
 
   <insert id="insert" parameterType="DeviceInfo"  useGeneratedKeys="true" keyProperty="id">
-    insert into <include refid="table"/> (type, serial_no, name, status, ip,
-    department_id, department_name, parent_id, parent_nick_name,
-    created_at, updated_at,
-    created_by, updated_by, remark, is_delete)
+    insert into <include refid="table"/> (<include refid="Base_Column_List"/>)
     values (#{type,jdbcType=VARCHAR}, #{serialNo,jdbcType=VARCHAR},#{name}, #{status}, #{ip},
     #{departmentId}, #{departmentName,jdbcType=VARCHAR},  #{parentId}, #{parentNickName},
        #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
-      #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      0)
+      #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 0,
+      #{simNo,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR})
   </insert>
 
   <update id="update" parameterType="DeviceInfo">
@@ -95,6 +95,12 @@
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="simNo != null">
+        sim_no = #{simNo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

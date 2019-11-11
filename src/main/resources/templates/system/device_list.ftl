@@ -44,6 +44,8 @@
 						<th data-options="field:'serialNo', halign : 'center' ,align : 'center', width:200">序列号</th>
 						<th field="name"  halign="center"  align="center" width="200">名称</th>
                         <th field="type"  halign="center"  align="center"  width="200">型号</th>
+                        <th field="version"  halign="center"  align="center"  width="200">固件版本</th>
+                        <th field="simNo"  halign="center"  align="center"  width="200">物联网卡号</th>
 						<th field="ip"  halign="center"  align="center"  width="200">IP</th>
 						<th data-options="field:'status',align:'center',width:200,formatter:statusFormater">状态</th>
 					</tr>
@@ -93,6 +95,16 @@
         <tr>
             <td style="text-align: right;">IP<span class="star">*</span>:</td>
             <td><input id="dip" name="dip" size="54" class="easyui-textbox" data-options="required:true,missingMessage:'该输入项为必输项'" style="width: 200px;"/></td>
+        </tr>
+
+        <tr>
+            <td style="text-align: right;">固件版本:</td>
+            <td><input id="dversion" name="dversion" size="54" class="easyui-textbox" style="width: 200px;"/></td>
+        </tr>
+
+        <tr>
+            <td style="text-align: right;">物联网卡号:</td>
+            <td><input id="dsimNo" name="dsimNo" size="54" class="easyui-textbox" style="width: 200px;"/></td>
         </tr>
 
         <tr>
@@ -252,8 +264,8 @@ var serialNo;
 function apply(){
     $("#applyDiv").dialog({
         title: '新增设备',
-        width: 400,
-        height: 400,
+        width: 370,
+        height: 350,
         top: 60,
         closed: true,
         cache: false,
@@ -276,6 +288,8 @@ function apply(){
     $('#dserialNo').textbox("setValue","");
     $('#dname').textbox("setValue","");
     $('#dip').textbox("setValue","");
+    $('#dversion').textbox("setValue","");
+    $('#dsimNo').textbox("setValue","");
     $("#applyDiv").dialog("open");
 }
 //新增-提交
@@ -284,6 +298,8 @@ function applyCommit(){
     var serialNo = $('#dserialNo').val();
     var name = $('#dname').val();
     var ip = $('#dip').val();
+    var version = $('#dversion').val();
+    var simNo = $('#dsimNo').val();
     var departmentId = $('#aduit_departmentId').combotree("getValue");
     if (type == "") {
         $("#type").focus();
@@ -300,7 +316,7 @@ function applyCommit(){
         type:'post',
         url:'/system/createDevice',
         dataType : "json",
-        data:{type:type, serialNo:serialNo, name:name, ip:ip, departmentId:departmentId},
+        data:{type:type, serialNo:serialNo, name:name, ip:ip, departmentId:departmentId, version:version, simNo: simNo},
         cache:false,
         async:false,
         success:function(data){

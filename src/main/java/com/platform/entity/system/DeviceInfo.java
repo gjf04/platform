@@ -39,6 +39,10 @@ public class DeviceInfo extends BaseEntity{
 
     private String parentNickName;
 
+    private String simNo;
+
+    private String version;
+
     public static enum StatusEnum{
         INIT(0),ENABLE(1),OFFLINE(2),WARN(3);
         @Getter
