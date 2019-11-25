@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -42,6 +43,30 @@ public class DeviceInfo extends BaseEntity{
     private String simNo;
 
     private String version;
+
+    private Date activeAt;
+
+    private Integer isInstall;
+
+    private String provinceName;
+
+    private String provinceCode;
+
+    private String cityName;
+
+    private String cityCode;
+
+    private String regionName;
+
+    private String regionCode;
+
+    private String address;
+
+    private String position;
+
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
 
     public static enum StatusEnum{
         INIT(0),ENABLE(1),OFFLINE(2),WARN(3);
