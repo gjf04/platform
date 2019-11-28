@@ -27,7 +27,7 @@
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, serial_no, sim_code, telecom_operator, dbm, power, box_temperature, residual_current, 
+    serial_no, sim_code, telecom_operator, dbm, power, box_temperature, residual_current,
     a_voltage, a_temperature, a_current, b_voltage, b_temperature, b_current, c_voltage, 
     c_temperature, c_current, smoke_alarm, infrared_alarm, air_switch, alarm, collect_time, 
     created_at
@@ -40,11 +40,6 @@
     from <include refid="table"/>
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from device_upload_data
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
 
   <insert id="insert" parameterType="DeviceUploadData"  useGeneratedKeys="true" keyProperty="id">
     insert into <include refid="table"/> (<include refid="Base_Column_List"/>)

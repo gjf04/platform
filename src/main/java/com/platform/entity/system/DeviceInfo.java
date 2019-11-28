@@ -8,10 +8,7 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 用户实体类
- * Created by GaoJingFei on 2017/11/13.
- */
+
 @ToString(callSuper=true)
 @Getter
 @Setter
@@ -69,7 +66,7 @@ public class DeviceInfo extends BaseEntity{
     private BigDecimal latitude;
 
     public static enum StatusEnum{
-        INIT(0),ENABLE(1),OFFLINE(2),WARN(3);
+        INIT(0),ENABLE(1),OFFLINE(2),EARLY_WARN(3),WARN(4);
         @Getter
         private Integer status;
         private StatusEnum(Integer status) {
