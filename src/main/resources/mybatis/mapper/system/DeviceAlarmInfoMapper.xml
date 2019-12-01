@@ -17,7 +17,7 @@
     <result column="settle_time" property="settleTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, serial_no, type, description, collect_time, settle_user_id, settle_nick_name, 
+    serial_no, type, description, collect_time, settle_user_id, settle_nick_name,
     settle_type, is_settle, is_scene, service_type, settle_record, settle_time
   </sql>
   <sql id="table">device_alarm_info</sql>
@@ -103,4 +103,12 @@
     FROM <include refid="table"/>
     <include refid="condition"/>
   </select>
+
+  <select id="queryListByCondition" resultMap="BaseResultMap" parameterType="map">
+    SELECT id, <include refid="Base_Column_List"/>
+    FROM <include refid="table"/>
+    <include refid="condition"/>
+    ORDER BY id DESC
+  </select>
+
 </mapper>

@@ -58,6 +58,13 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     }
 
     @Override
+    public ServiceResult<DeviceInfo> getBySerialNo(String serialNo) {
+        ServiceResult<DeviceInfo> executeResult = new ServiceResult<DeviceInfo>();
+        executeResult.setResult(deviceInfoDao.getBySerialNo(serialNo));
+        return executeResult;
+    }
+
+    @Override
     public ServiceResult<DeviceInfo> createDeviceInfo(DeviceInfo deviceInfo) {
         ServiceResult<DeviceInfo> executeResult = new ServiceResult<DeviceInfo>();
         deviceInfo.setCreatedAt(new Date());

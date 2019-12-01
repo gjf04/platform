@@ -25,6 +25,10 @@ public class DeviceAlarmInfoDao extends AbstractDao {
         return this.getSqlSession().selectOne(getNamespacePrefix()+"queryCountBy", params);
     }
 
+    public List<DeviceAlarmInfo> queryListByCondition(Map<String, Object> params){
+        return this.getSqlSession().selectList(getNamespacePrefix()+"queryListByCondition", params);
+    }
+
     //新增
     public Integer insert(DeviceAlarmInfo deviceAlarmInfo){
         return this.getSqlSession().insert(getNamespacePrefix()+"insert", deviceAlarmInfo);

@@ -4,6 +4,7 @@ import com.gao.common.PagerInfo;
 import com.gao.common.ServiceResult;
 import com.platform.entity.system.DeviceAlarmInfo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,6 +39,13 @@ public interface DeviceAlarmInfoService {
      * @param deviceAlarmInfo
      */
     public ServiceResult<DeviceAlarmInfo> updateDeviceAlarmInfo(DeviceAlarmInfo deviceAlarmInfo);
+
+    /**
+     * 查询
+     * @param params
+     * @return
+     */
+    public ServiceResult<List<DeviceAlarmInfo>> searchDeviceAlarmInfosByCondition(Map<String, Object> params);
 
    
 }

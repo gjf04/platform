@@ -1,7 +1,11 @@
 package com.platform.controller;
 
 import com.gao.common.ServiceResult;
+import com.platform.entity.system.DeviceAlarmInfo;
+import com.platform.entity.system.DeviceInfo;
 import com.platform.entity.system.UserInfo;
+import com.platform.service.system.DeviceAlarmInfoService;
+import com.platform.service.system.DeviceInfoService;
 import com.platform.service.system.ResourceInfoService;
 import com.platform.service.system.UserInfoService;
 import com.platform.util.ButtonConstant;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,6 +30,10 @@ public class IndexController extends AbstractController{
 	private ResourceInfoService resourceInfoService;
 	@Resource
 	private UserInfoService userInfoService;
+	@Resource
+	private DeviceAlarmInfoService deviceAlarmInfoService;
+	@Resource
+	private DeviceInfoService deviceInfoService;
 
 	@RequestMapping(method=RequestMethod.GET,value= {"login.html",""})
 	public String login(HttpServletRequest request,Map<String, Object> modelMap)  throws Exception {
@@ -109,13 +119,19 @@ public class IndexController extends AbstractController{
 
 	@RequestMapping(method=RequestMethod.GET,value= {"firePre.html",""})
 	public String firePre(HttpServletRequest request,Map<String, Object> modelMap)  throws Exception {
-
+		Map<String, Object> params = new HashMap<String, Object>();
+		ServiceResult<List<DeviceAlarmInfo>> alarmInfoResult = deviceAlarmInfoService.searchDeviceAlarmInfosByCondition(params);
+		if(alarmInfoResult.getSuccess() && alarmInfoResult.getResult().size() > 0){
+			modelMap.put("deviceAlarmInfoList",alarmInfoResult.getResult());
+		}
 		return "firePre";
 	}
 
 	@RequestMapping(method=RequestMethod.GET,value= {"overview.html",""})
 	public String overview(HttpServletRequest request,Map<String, Object> modelMap)  throws Exception {
-
+		String serialNo = request.getParameter("serialNo");
+		ServiceResult<DeviceInfo> result = deviceInfoService.getBySerialNo(serialNo);
+		modelMap.put("deviceInfo",result.getResult());
 		return "overview";
 	}
 

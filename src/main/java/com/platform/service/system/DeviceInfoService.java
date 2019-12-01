@@ -27,6 +27,12 @@ public interface DeviceInfoService {
      */
     public ServiceResult<DeviceInfo> getById(Long id);
 
+    /**
+     * getBySerialNo
+     * @param serialNo
+     */
+    public ServiceResult<DeviceInfo> getBySerialNo(String serialNo);
+
 
     /**
      * 创建

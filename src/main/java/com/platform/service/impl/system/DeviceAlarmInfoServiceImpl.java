@@ -78,6 +78,12 @@ public class DeviceAlarmInfoServiceImpl implements DeviceAlarmInfoService {
         return executeResult;
     }
 
-
+    @Override
+    public ServiceResult<List<DeviceAlarmInfo>> searchDeviceAlarmInfosByCondition(Map<String, Object> params) {
+        ServiceResult<List<DeviceAlarmInfo>> result = new ServiceResult<List<DeviceAlarmInfo>>();
+        List<DeviceAlarmInfo> deviceAlarmInfos = deviceAlarmInfoDao.queryListByCondition(params);
+        result.setResult(deviceAlarmInfos);
+        return result;
+    }
 
 }

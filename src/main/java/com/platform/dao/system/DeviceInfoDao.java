@@ -16,6 +16,10 @@ public class DeviceInfoDao extends AbstractDao {
         return this.getSqlSession().selectOne(getNamespacePrefix()+"getById", id);
     }
 
+    public DeviceInfo getBySerialNo(String serialNo){
+        return this.getSqlSession().selectOne(getNamespacePrefix()+"getBySerialNo", serialNo);
+    }
+
 
     public List<DeviceInfo> queryListBy(Map<String, Object> params){
         return this.getSqlSession().selectList(getNamespacePrefix()+"queryListBy", params);
