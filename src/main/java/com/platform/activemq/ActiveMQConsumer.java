@@ -18,12 +18,12 @@ public class ActiveMQConsumer {
     @Resource
     private DeviceUploadDataService deviceUploadDataService;
 
-    @JmsListener(destination="springboot.queue")
+    //@JmsListener(destination="springboot.queue")
     public void ListenQueue(String msg){
         log.info("接收到queue消息：{}" , msg);
     }
 
-    @JmsListener(destination="sc.electricity.platform", containerFactory = "jmsTopicListenerContainerFactory")
+    //@JmsListener(destination="sc.electricity.platform", containerFactory = "jmsTopicListenerContainerFactory")
     public void ListenTopic(String msg){
         log.info("接收到topic消息：{}", msg);
         JSONObject dataJson = (JSONObject) JSONObject.parseObject(msg);

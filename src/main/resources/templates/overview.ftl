@@ -24,7 +24,8 @@
 <link href="${urls.getForLookupPath('/css/app.9324178f.css')}" rel="stylesheet">
 <link href="${urls.getForLookupPath('/css/chunk-20ac.f2114997.css')}" rel="stylesheet">
 <link href="${urls.getForLookupPath('/css/chunk-cc77.a6302452.css')}" rel="stylesheet">
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<#--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="${urls.getForLookupPath('/js/jquery.min.js')}"></script>
 </head>
 <body style="">
