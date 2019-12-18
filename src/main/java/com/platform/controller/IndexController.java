@@ -127,12 +127,6 @@ public class IndexController extends AbstractController{
 		return "firePre";
 	}
 
-	@RequestMapping(method=RequestMethod.GET,value= {"overview.html",""})
-	public String overview(HttpServletRequest request,Map<String, Object> modelMap)  throws Exception {
-		String serialNo = request.getParameter("serialNo");
-		ServiceResult<DeviceInfo> result = deviceInfoService.getBySerialNo(serialNo);
-		modelMap.put("deviceInfo",result.getResult());
-		return "overview";
-	}
+
 
 }

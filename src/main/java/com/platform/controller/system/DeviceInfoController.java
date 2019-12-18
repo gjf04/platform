@@ -180,5 +180,14 @@ public class DeviceInfoController {
         return jsonResult;
     }
 
+    @RequestMapping(method=RequestMethod.GET,value= {"overview.html",""})
+    public String overview(HttpServletRequest request,Map<String, Object> modelMap)  throws Exception {
+        String serialNo = request.getParameter("serialNo");
+        log.info("[IndexController][overview] serialNo={}", serialNo);
+        ServiceResult<DeviceInfo> result = deviceInfoService.getBySerialNo(serialNo);
+        modelMap.put("deviceInfo",result.getResult());
+        return "overview";
+    }
+
 
 }  

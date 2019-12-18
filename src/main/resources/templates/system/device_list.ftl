@@ -231,7 +231,8 @@ var serialNo;
 			nowrap : true,
 			border : false,
             onDblClickRow : function(rowIndex,rowData){
-                showFormWin(rowIndex,rowData);
+                //showFormWin(rowIndex,rowData);
+                location.href='overview.html?serialNo=' + rowData.serialNo;
             }
         });
 	});
